@@ -1,5 +1,13 @@
 {% entends "layout.html" %}
-
+{% block title %}
+  <title>{{keyword}}|宅搜|otaku.hk</title>
+{% endblock %}
+{% block keywords %}
+  <meta name="keywords" content="{{keyword}},宅搜,磁力搜索,otaku.hk">
+{% endblock %}
+{% block description %}
+  <meta name="description" content="宅搜——{{keyword}}磁力链接,bt种子搜索列表页">
+{% endblock %}
 {% block content %}
 	<div class="list">
     <form class="input-group input-group custom-input-group">
@@ -10,55 +18,69 @@
     </form>
     <div class="container">
       <div class="panel custom-panel">
-        <div class="panel-heading">大约 3817 条结果，耗时 5 毫秒。</div>
+        <div class="panel-heading">Found {{result.meta.total_found}} items for {{keyword}} in {{result.meta.time}}s.</div>
+
+        {% if result.items %}
         <ul class="list-group">
+          {% for x in result.items %}
           <li class="list-group-item">
-            <h3 class="item-title"><a href="#">hello,world.windows</a></h3>
+            <h3 class="item-title"><a href="{% url 'hash' x.id%}">{{x.name|highlight:words}}</a></h3>
             <ul class="item-list">
-              <li>龙珠vs弗利沙<span>3GB</span></li>
-              <li>弗利沙的打女案发<span>777MB</span></li>
-              <li>回复哈呵呵呵发回复哈发货和恢复和<span>777MB</span></li>
+              {% if 'files' in x %}
+                    {% for y in x.files %}
+                        <li>{{y.path}} <span>{{y.length|filesizeformat}}</span></li>
+                    {% endfor %}
+                        <li>....</li>
+                {% else %}
+                    <li>{{x.name}} <span>{{x.length|filesizeformat}}</span></li>
+                {% endif %}
             </ul>
             <ul class="item-tail list-inline list-unstyled">
-              <li>总大小：<span class="label label-default">22GB</span></li>
-              <li>文件数：<span class="label label-primary">22GB</span></li>
-              <li>下载热度：<span class="label label-success">22GB</span></li>
+              <li>总大小：{{x.length|filesizeformat}}</li>
+              <li>文件数：{{x.files|length}}</li>
+              <li>下载热度：{{x.requests}}</li>
+              {% if x.maybe_fake %}
+                <li><span class="label label-warning">FAKE!!!</span></li>
+              {% endif %}
             </ul>
           </li>
-          <li class="list-group-item">
-            <h3 class="item-title"><a href="#">hello,world.windows</a></h3>
-            <ul class="item-list">
-              <li>龙珠vs弗利沙<span>3GB</span></li>
-              <li>弗利沙的打女案发<span>777MB</span></li>
-              <li>回复哈呵呵呵发回复哈发货和恢复和<span>777MB</span></li>
-            </ul>
-            <ul class="item-tail list-inline list-unstyled">
-              <li>总大小：</li>
-              <li>文件数：</li>
-              <li>下载热度：</li>
-            </ul>
-          </li>
+          {% endfor %}
         </ul>
-      </div>  
+        {% else %}
+          <h4>Sorry, not found "{{keyword}}" in the DHT network. Please try it later :)</h4>
+        {% endif %}
+
+      </div> 
+      {% if result.items %} 
       <nav>
         <ul class="pagination custom-pagination">
-          <li>
-            <a href="#">&laquo;</a>
-          </li>
-          <li>
-            <a href="#">1</a>
-          </li>
-          <li>
-            <a href="#">2</a>
-          </li>
-          <li>
-            <a href="#">3</a>
-          </li>
-          <li>
-            <a href="#">&raquo;</a>
-          </li>
+          {% if p == 1 %}
+            <li>
+              <a href="javascript;" class="disabled">&laquo;</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="./?c={{category}}&s={{sort}}&p={{p|add:-1}}">&laquo;</a>
+            </li>
+          {%endif%}
+          {% for i in prev_pages %}
+          <li class=""><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
+          {% endfor %}
+
+          <li class="active"><a href="./?c={{category}}&s={{sort}}&p={{g.p}}"> {{p}} <span class="sr-only">(current)</span></a></li>
+          
+          {% for i in next_pages %}
+          <li class=""><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
+          {% endfor %}
+
+          {% if p >= page_max %}
+          <li class="disabled"><a href="#">&raquo;</a></li>
+          {% else %}
+          <li><a href="./?c={{category}}&s={{sort}}&p={{p|add:1}}">&raquo;</a></li>
+          {% endif %}
         </ul>
       </nav>
+      {% endif %}
     </div>
   </div>
 {% endblock %} 

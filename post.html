@@ -1,32 +1,64 @@
 {% extends "layout.html" %}
-
+{% block keywords %}
+  <meta name="keywords" content="{{keyword}}|{{keywords|join:','}}|宅搜|磁力搜索|otaku.hk">
+{% endblock %}
+{% block description %}
+  <meta name="description" content="{{ info.name }},磁力链接,bt种子搜索百度云,迅雷下载页">
+{% endblock %}
+{% block title%}
+  <title>{{ info.name }}|磁力搜索|宅搜</title>
+{% endblock %}
 {% block content %}
-      
-        <div class="post">
-          <form class="input-group input-group custom-input-group">
-            <input type="search" class="form-control" placeholder="输入你想要搜索的内容">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">search!</button>
-            </span>
-          </form>
-          <div class="container">
-            <ul class="list-group">
-              <li class="list-group-item"><h3>window10先行版2014.10.22</h3></li>
-              <li class="list-group-item">磁力链接：<a href="#">magnet:?xt=urn:btih:bb0c97101097b8e05c106cd26ce41fdc56f3974d</a></li>
-              <li class="list-group-item">文件列表：
-                <ul>
-                  <li>window10先行版2014.10.22<span class="label label-default">444MB</span></li>
-                  <li>window10先行版2014.10.22<span class="label label-default">444MB</span></li>
-                  <li>window10先行版2014.10.22<span class="label label-default">444MB</span></li>
-                </ul>
-              </li>
-              <li class="list-group-item post-btn">
-                <a href="#" class="btn btn-primary">点击下载</a>
-                <a href="#" class="btn btn-success">在线观看</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-  		</div> 
-{% endblock %}      
+  <div class="post">
+    <form class="input-group input-group custom-input-group">
+      <input type="search" class="form-control" placeholder="输入你想要搜索的内容">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">search!</button>
+      </span>
+    </form>
+    <div class="container">
+      <ul class="list-group">
+        <li class="list-group-item"><h3>{{ info.name }}</h3></li>
+        <li class="list-group-item">磁力链接：<a class="magnet-link" target="_blank"></a></li>
+        <li class="list-group-item">文件列表：
+          <ul>
+            {% if info.files %}
+                {% for y in info.files %}
+                    <li>{{y.path}}<span class="label label-default">{{y.length|filesizeformat}}</span></li>
+                {% endfor %}
+            {% else %}
+                <li>{{info.name}}<span class="label label-default">{{info.length|filesizeformat}}</span></li>
+            {% endif %}
+          </ul>
+        </li>
+        <li class="list-group-item post-btn">
+          <a class="btn btn-primary magnet-down" target="_blank">点击下载</a>
+          <a href="javascript;" class="btn btn-success">在线观看</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endblock %} 
+
+{% block scripts %} 
+  {{ block.super }}
+  <script>
+    setTimeout(function(){
+        if(navigator.userAgent.indexOf('bot')>-1)
+            return; //prevent crawling apis
+        var url = '/api/json_info?hashes=' + '{{info.id}}';
+        $.getJSON(url, function(j){
+            if(j.ret == 0){
+                var info = j.result[0];
+                var link1 = 'magnet:' + '?xt=urn' + ':btih:' + info.info_hash;
+                var link2 =  link1 + '&dn=' + encodeURIComponent(info.name);
+                $('.magnet-link').attr('href', link2);
+                $('.magnet-link').html(link1);
+                $('.magnet-down').attr('href',link2);
+            }
+        });
+       /* $.get("{% url 'top_log'%}?type=hash&hash={{info.id}}");*/
+    }, 100);
+  </script>
+{% endblock %}    
   		

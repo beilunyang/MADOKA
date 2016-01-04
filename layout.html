@@ -3,10 +3,19 @@
 	<head>
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>磁力搜索</title>
-		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+      {% block keywords %}
+        <meta name="keywords" content="宅搜,磁力搜索,bt搜索,番号搜索,番号大全,p2p种子搜索">
+      {% endblock %}
+      {% block description %}
+        <meta name="description" content="宅搜,专门提供bt种子,番号搜索的dht资源搜索网站,提供磁力链接，bt百度云在线观看,迅雷免费高速下载">
+      {% endblock %}
+    	{% block title %}
+        <title>宅搜|otaku.hk|磁力搜索</title>
+      {% endblock %}
+      {% load staticfiles %}
+  		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %">
     	<!--[if lt IE 9]>
       		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -64,8 +73,9 @@
           </div>
         </div>
       </footer>
-      
+      {% block scripts %} 
       <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
       <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      {% endblock %}
   	</body>
 </html>
