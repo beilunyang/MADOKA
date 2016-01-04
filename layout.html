@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% load filters %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -10,11 +12,10 @@
       {% block description %}
         <meta name="description" content="宅搜,专门提供bt种子,番号搜索的dht资源搜索网站,提供磁力链接,bt百度云在线观看,迅雷免费高速下载">
       {% endblock %}
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
     	{% block title %}
         <title>宅搜|otaku.hk|磁力搜索</title>
       {% endblock %}
-      {% load staticfiles %}
-      {% load filters %}
   		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %">
     	<!--[if lt IE 9]>
@@ -59,9 +60,9 @@
               <h4>Otaku.hk磁力搜索</h4>
               <p>本网站一切资源均来源于DHT网络，本网站不提供任何形式的资源存储，只提供资源索引。</p>
               <ul class="friends list-unstyled list-inline">
-                <li><a href="#">悖论の小黑屋</a></li>
-                <li><a href="#">悖论の小黑屋</a></li>
-                <li><a href="#">悖论の小黑屋</a></li>
+                <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
+                <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
+                <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
               </ul>
             </div>
             <div class="col-sm-6">
