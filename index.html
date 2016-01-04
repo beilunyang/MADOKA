@@ -3,12 +3,20 @@
 {% block content %}
 	<div class="main">
         <div class="logo" style="background: url({% static 'logo.jpg' %}) center center no-repeat;"></div>
-  			<form class="input-group input-group-lg custom-input-group">
-          <input type="search" class="form-control" placeholder="输入你想要搜索的内容" autocomplete="off">
+  			<form class="input-group input-group-lg custom-input-group x-sform">
+          <input type="search" class="form-control x-search" placeholder="输入你想要搜索的内容" autocomplete="off">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">search!</button>
           </span>
         </form>
   		<!-- 此处关键词推荐觉得没什么软用,先去掉 -->
   	</div>
+{% endblock %}
+{% block scripts %}
+  {{ block.super }}
+  <script type="text/javascript">
+    $(function(){
+        $('.x-search').focus();
+    });
+  </script>
 {% endblock %}

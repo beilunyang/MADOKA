@@ -8,12 +8,13 @@
         <meta name="keywords" content="宅搜,磁力搜索,bt搜索,番号搜索,番号大全,p2p种子搜索">
       {% endblock %}
       {% block description %}
-        <meta name="description" content="宅搜,专门提供bt种子,番号搜索的dht资源搜索网站,提供磁力链接，bt百度云在线观看,迅雷免费高速下载">
+        <meta name="description" content="宅搜,专门提供bt种子,番号搜索的dht资源搜索网站,提供磁力链接,bt百度云在线观看,迅雷免费高速下载">
       {% endblock %}
     	{% block title %}
         <title>宅搜|otaku.hk|磁力搜索</title>
       {% endblock %}
       {% load staticfiles %}
+      {% load filters %}
   		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %">
     	<!--[if lt IE 9]>
@@ -32,11 +33,11 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Otaku.hk</a>
+                <a class="navbar-brand" href="#">宅搜|otaku</a>
               </div>
               <div class="collapse navbar-collapse" id="navbar-responses">
                 <ul class="nav navbar-nav">
-                  <li><a href="#">首页</a></li>
+                  <li><a href="/">首页</a></li>
                   <li><a href="#">About</a></li>
                 </ul>
               </div>
@@ -76,6 +77,18 @@
       {% block scripts %} 
       <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
       <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+        $('.x-sform').submit(function(e){
+          var kw = $('.x-search').val();
+          if(!kw){
+              $('.x-search').focus();
+              return false;
+          }
+          var url = '/search/' + encodeURIComponent(kw) + '/';
+          window.location = url;
+          return false;
+        });
+      </script>>
       {% endblock %}
   	</body>
 </html>
