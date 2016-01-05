@@ -17,7 +17,7 @@
         <title>宅搜|otaku.hk|磁力搜索</title>
       {% endblock %}
   		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %">
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     	<!--[if lt IE 9]>
       		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -34,7 +34,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">宅搜|otaku</a>
+                <a class="navbar-brand" href="/">宅搜otaku</a>
               </div>
               <div class="collapse navbar-collapse" id="navbar-responses">
                 <ul class="nav navbar-nav">
@@ -48,7 +48,7 @@
         
         {% block content %}
       		
-        {% block content %}
+        {% endblock %}
 
       </div> 
 
@@ -60,8 +60,7 @@
               <h4>Otaku.hk磁力搜索</h4>
               <p>本网站一切资源均来源于DHT网络，本网站不提供任何形式的资源存储，只提供资源索引。</p>
               <ul class="friends list-unstyled list-inline">
-                <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
-                <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
+                <li>友情链接:</li>
                 <li><a href="https://bitibiti.com">悖论の小黑屋</a></li>
               </ul>
             </div>
@@ -89,7 +88,7 @@
           window.location = url;
           return false;
         });
-      </script>>
+      </script>
       {% endblock %}
   	</body>
 </html>

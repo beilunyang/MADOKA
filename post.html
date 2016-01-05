@@ -13,7 +13,7 @@
     <form class="input-group input-group custom-input-group x-sform">
       <input type="search" class="form-control x-search" placeholder="输入你想要搜索的内容">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">search!</button>
+        <button class="btn btn-default" type="submit">search!</button>
       </span>
     </form>
     <div class="container">
@@ -57,7 +57,6 @@
                 $('.magnet-down').attr('href',link2);
             }
         });
-       /* $.get("{% url 'top_log'%}?type=hash&hash={{info.id}}");*/
     }, 100);
   </script>
 {% endblock %}    

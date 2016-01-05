@@ -1,4 +1,5 @@
-{% entends "layout.html" %}
+{% extends "layout.html" %}
+{% load filters %}
 {% block title %}
   <title>{{keyword}}|宅搜|otaku.hk</title>
 {% endblock %}
@@ -13,7 +14,7 @@
     <form class="input-group input-group custom-input-group x-sform">
       <input type="search" class="form-control x-search" placeholder="输入你想要搜索的内容">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">search!</button>
+        <button class="btn btn-default" type="submit">search!</button>
       </span>
     </form>
     <div class="container">
@@ -47,7 +48,7 @@
           {% endfor %}
         </ul>
         {% else %}
-          <h4>Sorry, not found "{{keyword}}" in the DHT network. Please try it later :)</h4>
+          <h4 style="padding:0 15px;">Sorry, not found "{{keyword}}" in the DHT network. Please try it later :)</h4>
         {% endif %}
 
       </div> 
