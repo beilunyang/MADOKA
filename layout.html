@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load filters %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -16,7 +15,7 @@
     	{% block title %}
         <title>宅搜|otaku.hk|磁力搜索</title>
       {% endblock %}
-  		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
+  		<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     	<!--[if lt IE 9]>
       		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -75,8 +74,8 @@
         </div>
       </footer>
       {% block scripts %} 
-      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
-      <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+      <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
       <script type="text/javascript">
         $('.x-sform').submit(function(e){
           var kw = $('.x-search').val();

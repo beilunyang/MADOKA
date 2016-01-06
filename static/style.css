@@ -11,6 +11,10 @@ a:hover{
 	text-decoration: none;
 	color: #F5003D;
 }
+.pagination .active > a{
+	background-color: #FF3366;
+	border-color: #FF3366;
+}
 .god{
 	min-height: 100%;
 	padding-bottom: 40px;
@@ -55,7 +59,7 @@ footer{
 	padding:20px 0;
 }
 .friends a:hover{
-	#fff;
+	color:#fff;
 }
 .touchus{
 	margin-top:20px;
