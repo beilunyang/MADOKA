@@ -1,4 +1,5 @@
-{% entends "layout.html" %}
+{% extends "layout.html" %}
+{% load filters %}
 {% block title %}
   <title>{{keyword}}|宅搜|otaku.hk</title>
 {% endblock %}
@@ -13,7 +14,7 @@
     <form class="input-group input-group custom-input-group x-sform">
       <input type="search" class="form-control x-search" placeholder="输入你想要搜索的内容">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">search!</button>
+        <button class="btn btn-default" type="submit">search!</button>
       </span>
     </form>
     <div class="container">
@@ -24,7 +25,7 @@
         <ul class="list-group">
           {% for x in result.items %}
           <li class="list-group-item">
-            <h3 class="item-title"><a href="{% url 'hash' x.id%}">{{x.name|highlight:words}}</a></h3>
+            <h4 class="item-title"><a href="{% url 'hash' x.id%}">{{x.name|highlight:words}}</a></h4>
             <ul class="item-list">
               {% if 'files' in x %}
                     {% for y in x.files %}
@@ -36,9 +37,9 @@
                 {% endif %}
             </ul>
             <ul class="item-tail list-inline list-unstyled">
-              <li>总大小：{{x.length|filesizeformat}}</li>
-              <li>文件数：{{x.files|length}}</li>
-              <li>下载热度：{{x.requests}}</li>
+              <li>总大小：<span class="label label-info">{{x.length|filesizeformat}}</span></li>
+              <li>文件数：<span class="label label-success">{{x.files|length}}</span></li>
+              <li>下载热度：<span class="label label-primary">{{x.requests}}</span></li>
               {% if x.maybe_fake %}
                 <li><span class="label label-warning">FAKE!!!</span></li>
               {% endif %}
@@ -47,7 +48,7 @@
           {% endfor %}
         </ul>
         {% else %}
-          <h4>Sorry, not found "{{keyword}}" in the DHT network. Please try it later :)</h4>
+          <h4 style="padding:0 15px;">Sorry, not found "{{keyword}}" in the DHT network. Please try it later :)</h4>
         {% endif %}
 
       </div> 
@@ -56,7 +57,7 @@
         <ul class="pagination custom-pagination">
           {% if p == 1 %}
             <li>
-              <a href="javascript;" class="disabled">&laquo;</a>
+              <a href="#" class="disabled">&laquo;</a>
             </li>
           {% else %}
             <li>
@@ -64,13 +65,13 @@
             </li>
           {%endif%}
           {% for i in prev_pages %}
-          <li class=""><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
+          <li><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
           {% endfor %}
 
           <li class="active"><a href="./?c={{category}}&s={{sort}}&p={{g.p}}"> {{p}} <span class="sr-only">(current)</span></a></li>
           
           {% for i in next_pages %}
-          <li class=""><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
+          <li><a href="./?c={{category}}&s={{sort}}&p={{i}}"> {{i}} </a></li>
           {% endfor %}
 
           {% if p >= page_max %}
