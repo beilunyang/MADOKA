@@ -58,7 +58,7 @@ footer{
 	width:100%;
 	padding:20px 0;
 }
-.friends a:hover{
+.friends a:hover,.copyright a:hover{
 	color:#fff;
 }
 .touchus{
