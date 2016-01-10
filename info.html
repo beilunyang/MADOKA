@@ -31,9 +31,19 @@
             {% endif %}
           </ul>
         </li>
+        <li class="list-group-item">相关链接:
+          <ul>
+            {% for item in related %}
+            <li>
+              <a href="{% url 'hash' item.id %}" title="{{item.name}}">{{item.name|truncatechars:50}}</a>
+              <span class="label label-default">{{item.length|filesizeformat}}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
         <li class="list-group-item post-btn">
           <a class="btn btn-primary magnet-down" target="_blank">点击下载</a>
-          <a href="#" class="btn btn-success">在线观看</a>
+          <a href="#" class="btn btn-success magnet-down" target="_blank">在线观看</a>
         </li>
       </ul>
     </div>
@@ -44,8 +54,6 @@
   {{ block.super }}
   <script>
     setTimeout(function(){
-        if(navigator.userAgent.indexOf('bot')>-1)
-            return; //prevent crawling apis
         var url = '/api/json_info?hashes=' + '{{info.id}}';
         $.getJSON(url, function(j){
             if(j.ret == 0){

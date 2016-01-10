@@ -99,6 +99,18 @@ footer{
 .post,.list{
 	margin-top: 60px;
 }
+.hot{
+	text-align: center;
+	margin:0 auto;
+	max-width:75%;
+}
+.hot li{
+	 padding-right:10px;
+     padding-left:10px;
+}
+.hot li a{
+	border-bottom: 1px dotted;
+}
 
 @media(max-width:768px){
 	.custom-input-group{

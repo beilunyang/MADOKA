@@ -9,7 +9,14 @@
             <button class="btn btn-default" type="submit">search!</button>
           </span>
         </form>
-  		<!-- 此处关键词推荐觉得没什么软用,先去掉 -->
+  		  <div class="hot">
+          <ul class="list-inline list-unstyled">
+            <li class="label" style="background-color: #FF3366;font-size: 14px;padding:7px;">推荐:</li>
+            {% for r in reclist%}
+                <li><a href="/search/{{r.keyword|urlencode}}/">{{r.keyword}}</a></li>
+            {% endfor %}
+          </ul>  
+        </div>
   	</div>
 {% endblock %}
 {% block scripts %}
